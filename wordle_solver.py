@@ -46,8 +46,8 @@ def reduce_word_bank(guess:str, guess_pattern:List[str], word_bank:List[str]) ->
             # Determine the least number of possible occurences of curr_letter in the word
             min_occur:int = np.sum(enum_pattern[np.where(guess_array==curr_letter)] == Pattern.yellow.value)
 
-            new_word_bank:List[str] = [w for w in new_word_bank if np.sum(np.array(list(w))==curr_letter)\
-                                       >= min_occur]
+            new_word_bank:List[str] = [w for w in new_word_bank if (np.sum(np.array(list(w))==curr_letter)\
+                                       >= min_occur) and (w[pos] != curr_letter)]
 
         # Check green condition
         if enum_pattern[pos] == Pattern.green.value:
